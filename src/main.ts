@@ -6,6 +6,7 @@ import {
 } from '@nestjs/platform-fastify';
 import { AppModule } from '@/app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { HttpExceptionFilter } from '@/common/filters/http-exception.filter';
 
 const logger = new Logger('Main');
 
@@ -16,6 +17,7 @@ async function bootstrap() {
   );
 
   app.setGlobalPrefix('api');
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   const config = new DocumentBuilder()
     .setTitle('Users example')
