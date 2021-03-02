@@ -12,7 +12,7 @@ const logger = new Logger('Main');
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter(),
+    new FastifyAdapter({ logger: true }),
   );
 
   app.setGlobalPrefix('api');
