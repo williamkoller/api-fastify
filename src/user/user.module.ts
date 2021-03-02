@@ -7,6 +7,8 @@ import { LoadUserByEmailRepository } from '@/user/repositories/load-user-by-emai
 import { AddUserController } from '@/user/controllers/add-user/add-user.controller';
 import { AddUserService } from '@/user/services/add-user/add-user.service';
 import { HashComparer, Hasher } from '@/shared/criptography';
+import { LoadUsersService } from '@/user/services/load-users/load-users.service';
+import { LoadUsersController } from '@/user/controllers/load-users/load-users.controller';
 
 @Module({
   imports: [
@@ -17,9 +19,10 @@ import { HashComparer, Hasher } from '@/shared/criptography';
     LoadUsersRepository,
     LoadUserByEmailRepository,
     AddUserService,
+    LoadUsersService,
     Hasher,
     HashComparer,
   ],
-  controllers: [AddUserController],
+  controllers: [AddUserController, LoadUsersController],
 })
 export class UserModule {}

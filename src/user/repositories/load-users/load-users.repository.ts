@@ -10,6 +10,6 @@ export class LoadUsersRepository {
   ) {}
 
   async loadUsers(): Promise<User[]> {
-    return await this.userModel.find();
+    return await this.userModel.find({}, { __v: false }).select('-password');
   }
 }
