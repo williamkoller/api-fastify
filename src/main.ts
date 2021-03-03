@@ -8,6 +8,10 @@ import { AppModule } from '@/app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { HttpExceptionFilter } from '@/common/filters/http-exception.filter';
 import * as helmet from 'fastify-helmet';
+import {
+  TransformInterceptor,
+  LoggingInterceptor,
+} from '@/common/interceptors';
 
 const logger = new Logger('Main');
 
@@ -22,6 +26,11 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   app.useGlobalFilters(new HttpExceptionFilter());
+
+  app.useGlobalInterceptors(
+    new LoggingInterceptor(),
+    new TransformInterceptor(),
+  );
 
   const config = new DocumentBuilder()
     .setTitle('Users example')
