@@ -6,7 +6,6 @@ import {
 } from '@nestjs/platform-fastify';
 import { AppModule } from '@/app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { HttpExceptionFilter } from '@/common/filters/http-exception.filter';
 import * as helmet from 'fastify-helmet';
 import {
   TransformInterceptor,
@@ -18,14 +17,12 @@ const logger = new Logger('Main');
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter({ logger: true }),
+    new FastifyAdapter(),
   );
 
   app.getHttpAdapter().getInstance().register(helmet);
 
   app.setGlobalPrefix('api');
-
-  app.useGlobalFilters(new HttpExceptionFilter());
 
   app.useGlobalInterceptors(
     new LoggingInterceptor(),
@@ -37,6 +34,8 @@ async function bootstrap() {
     .setDescription('The user API description')
     .setVersion('1.0')
     .addTag('user')
+    .addTag('auth')
+    .addTag('me')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

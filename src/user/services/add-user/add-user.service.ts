@@ -1,6 +1,6 @@
 import { AddUserDto } from '@/user/dtos/add-user/add-user.dto';
 import { AddUserRepository } from '@/user/repositories/add-user/add-user.repository';
-import { LoadUserByEmailRepository } from '@/user/repositories/load-user-by-email/load-user-by-email.reposiotry';
+import { LoadUserByEmailRepository } from '@/user/repositories/load-user-by-email/load-user-by-email.repository';
 import { User } from '@/user/schemas/user.schema';
 import {
   BadRequestException,
