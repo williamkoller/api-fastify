@@ -7,6 +7,7 @@ import {
 import { AppModule } from '@/app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { HttpExceptionFilter } from '@/common/filters/http-exception.filter';
+import * as helmet from 'fastify-helmet';
 
 const logger = new Logger('Main');
 
@@ -16,7 +17,10 @@ async function bootstrap() {
     new FastifyAdapter({ logger: true }),
   );
 
+  app.getHttpAdapter().getInstance().register(helmet);
+
   app.setGlobalPrefix('api');
+
   app.useGlobalFilters(new HttpExceptionFilter());
 
   const config = new DocumentBuilder()
@@ -25,6 +29,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('user')
     .build();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
 

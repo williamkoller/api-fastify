@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { CacheModule, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from '@/user/schemas/user.schema';
 import { AddUserRepository } from '@/user/repositories/add-user/add-user.repository';
@@ -13,6 +13,10 @@ import { LoadUsersController } from '@/user/controllers/load-users/load-users.co
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+    CacheModule.register({
+      ttl: Number(process.env.CACHE_TTL),
+      max: Number(process.env.CACHE_MAX),
+    }),
   ],
   providers: [
     AddUserRepository,
