@@ -9,8 +9,6 @@ import { User, UserSchema } from '@/user/schemas/user.schema';
 import { LoadUserByEmailRepository } from '@/user/repositories/load-user-by-email/load-user-by-email.repository';
 import { ValidateUserService } from '@/auth/services/validate-user/validate-user.service';
 import { JwtStrategy } from '@/auth/strategies/jwt/jwt-strategy';
-import { LoadUserService } from '@/user/services/load-user/load-user.service';
-import { MeController } from '@/auth/controllers/me/me.controller';
 import { LoadUserByIdRepository } from '@/user/repositories/load-user-by-id/load-user-by-id.repository';
 import { LoadUserByIdService } from '@/user/services/load-user-by-id/load-user-by-id.service';
 import { LoadUserByNameService } from '@/user/services/load-user-by-name/load-user-by-name.service';
@@ -33,7 +31,6 @@ import { LoadUserByNameRepository } from '@/user/repositories/load-user-by-name/
     HashComparer,
     JwtTokenService,
     LoadUserByEmailService,
-    LoadUserService,
     LoadUserByEmailRepository,
     LoadUserByIdService,
     LoadUserByIdRepository,
@@ -42,6 +39,6 @@ import { LoadUserByNameRepository } from '@/user/repositories/load-user-by-name/
     ValidateUserService,
     JwtStrategy,
   ],
-  controllers: [LoginController, MeController],
+  controllers: [LoginController],
 })
 export class AuthModule {}

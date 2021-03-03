@@ -4,9 +4,11 @@ import {
   CacheInterceptor,
   Controller,
   Get,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { JwtAuth } from '@/auth/guard/jwt-auth/jwt-auth.guard';
 
 @ApiTags('user')
 @Controller('users')
@@ -14,6 +16,7 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 export class LoadUsersController {
   constructor(private readonly loadUsersService: LoadUsersService) {}
 
+  @UseGuards(JwtAuth)
   @Get()
   @ApiResponse({
     status: 200,
