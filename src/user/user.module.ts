@@ -15,6 +15,7 @@ import { LoadUserByIdController } from '@/user/controllers/load-user-by-id/load-
 import { LoadUserByEmailService } from '@/user/services/load-user-by-email/load-user-by-email.service';
 import { LoadUserByNameRepository } from '@/user/repositories/load-user-by-name/load-user-by-name.repository';
 import { LoadUserByNameService } from '@/user/services/load-user-by-name/load-user-by-name.service';
+import { DeleteUserRepository } from '@/user/repositories/delete-user/delete-user.repository';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { LoadUserByNameService } from '@/user/services/load-user-by-name/load-us
     LoadUserByIdService,
     LoadUserByEmailService,
     LoadUserByNameService,
+    DeleteUserRepository,
     Hasher,
     HashComparer,
   ],

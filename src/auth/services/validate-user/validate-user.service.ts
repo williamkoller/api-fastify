@@ -20,10 +20,12 @@ export class ValidateUserService {
     if (!user) {
       throw new UnauthorizedException();
     }
+
     const validPassword = await this.hashComparer.compare(
       authUserDto.password,
       user.password,
     );
+
     if (!validPassword) {
       throw new UnauthorizedException('Incorrect email or password.');
     }
